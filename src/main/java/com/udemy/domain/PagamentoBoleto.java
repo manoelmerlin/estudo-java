@@ -1,5 +1,6 @@
 package com.udemy.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.udemy.domain.Enums.EstadoPagamento;
 
 import javax.persistence.Entity;
@@ -8,7 +9,9 @@ import java.util.Date;
 
 @Entity
 public class PagamentoBoleto extends Pagamento implements Serializable {
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dataVencimento;
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dataPagamento;
 
     public PagamentoBoleto(Integer id, EstadoPagamento estadoPagamento, Pedido pedido, Date dataVencimento, Date dataPagamento) {

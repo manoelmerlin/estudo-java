@@ -1,14 +1,10 @@
 package com.udemy.services;
 
-import com.udemy.domain.Categoria;
 import com.udemy.domain.Pedido;
-import com.udemy.repositories.CategoriaRepository;
 import com.udemy.repositories.PedidoRepository;
 import com.udemy.services.Exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.persistence.Entity;
 import java.util.List;
 import java.util.Optional;
 
