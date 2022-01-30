@@ -1,8 +1,6 @@
 package com.udemy.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
@@ -87,6 +85,16 @@ public class Pedido implements Serializable {
 
     public void setEnderecoDeEntrega(Endereco enderecoDeEntrega) {
         this.enderecoDeEntrega = enderecoDeEntrega;
+    }
+
+    public Double getTotal() {
+        double total = 0;
+
+        for (ItemPedido i : this.getItems()) {
+            total += i.getSubTotal();
+        }
+
+        return total;
     }
 
     @Override

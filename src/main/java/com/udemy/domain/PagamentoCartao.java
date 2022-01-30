@@ -1,10 +1,12 @@
 package com.udemy.domain;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.udemy.domain.Enums.EstadoPagamento;
 
 import javax.persistence.Entity;
 
 @Entity
+@JsonTypeName("pagamentoComCartao")
 public class PagamentoCartao extends Pagamento {
     private Integer numeroDeParcelas;
 

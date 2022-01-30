@@ -34,10 +34,6 @@ public class Cliente implements Serializable {
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
 
-    public void setTipo(Integer tipo) {
-        this.tipo = tipo;
-    }
-
     public List<Pedido> getPedidos() {
         return pedidos;
     }
