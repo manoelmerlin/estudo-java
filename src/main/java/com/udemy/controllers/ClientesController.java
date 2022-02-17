@@ -9,6 +9,7 @@ import com.udemy.services.ClientesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -51,6 +52,7 @@ public class ClientesController {
     }
 
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deletarCliente(@PathVariable Integer id) {
         clientesService.deletarClientePorId(id);
@@ -58,6 +60,7 @@ public class ClientesController {
         return ResponseEntity.noContent().build();
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping()
     public ResponseEntity<List<ClienteDTO>> listarTodosClientes() {
         List<Cliente> clientes = clientesService.listarTodosClientes();
@@ -66,6 +69,7 @@ public class ClientesController {
         return ResponseEntity.ok().body(ClienteDTO);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     public ResponseEntity<Page<ClienteDTO>> buscarPagina(
             @RequestParam(value = "pagina", defaultValue = "0") Integer pagina,

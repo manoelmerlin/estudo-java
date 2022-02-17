@@ -1,5 +1,6 @@
 package com.udemy.controllers.ExceptionHandler;
 
+import com.udemy.services.Exceptions.AuthorizationException;
 import com.udemy.services.Exceptions.DataIntegrityException;
 import com.udemy.services.Exceptions.ObjectNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,13 @@ public class ControllerExceptionHandler {
         StandardError error = new StandardError(HttpStatus.BAD_REQUEST.value(), exception.getMessage(), System.currentTimeMillis());
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
+    @ExceptionHandler(AuthorizationException.class)
+    public ResponseEntity<StandardError> authorizationError(AuthorizationException exception, HttpServletResponse request) {
+        StandardError error = new StandardError(HttpStatus.FORBIDDEN.value(), exception.getMessage(), System.currentTimeMillis());
+
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(error);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
